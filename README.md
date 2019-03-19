@@ -1,13 +1,13 @@
-[![Build Status](https://travis-ci.org/EOSIO/eosjs.svg?branch=master)](https://travis-ci.org/EOSIO/eosjs)
-[![NPM](https://img.shields.io/npm/v/eosjs.svg)](https://www.npmjs.org/package/eosjs)
+# Bosjs
 
-# Eosjs
+General purpose library for BOSCore and other EOSIO blockchains.
 
-General purpose library for EOSIO blockchains.
+## BOSJS Version : v1.0.1
+### EOSJS Version: v16.0.9
 
 ### Versions
 
-| [EOSIO/eosjs](/EOSIO/eosjs) | [Npm](https://www.npmjs.com/package/eosjs) | [EOSIO/eos](https://github.com/EOSIO/eos) | [Docker Hub](https://hub.docker.com/r/eosio/eos/) |
+| [bsocore/bosjs](/boscore/bosjs) | [Npm](https://www.npmjs.com/package/eosjs) | [EOSIO/eos](https://github.com/EOSIO/eos) | [Docker Hub](https://hub.docker.com/r/eosio/eos/) |
 | --- | --- | --- | --- |
 | tags: 16.0.0 - 16.0.9 | `npm install eosjs` | tags: v1.1.n - v1.2.4 | eosio/eos:v1.2.4 |
 
