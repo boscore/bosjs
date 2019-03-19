@@ -1,7 +1,7 @@
 {
-  "name": "eosjs",
-  "version": "16.0.9",
-  "description": "General purpose library for the EOS blockchain.",
+  "name": "bosjs",
+  "version": "1.0.1",
+  "description": "General purpose library for the BOS blockchain.",
   "main": "lib/index.js",
   "files": [
     "README.md",
@@ -20,22 +20,23 @@
     "minimize": "uglifyjs lib/eos.js -o lib/eos.min.js --source-map --compress --mangle",
     "docs": "jsdoc2md src/format.js > docs/format.md",
     "srisum": "srisum lib/eos.*",
-    "prepublishOnly": "npm run build && npm run test_lib && npm run minimize && npm run docs && npm run srisum"
+    "prepublishOnly": "npm run build  && npm run minimize && npm run docs && npm run srisum"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EOSIO/eosjs.git"
+    "url": "git+https://github.com/boscore/bosjs.git"
   },
   "keywords": [
+    "BOS",
     "EOS",
     "Blockchain"
   ],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/EOSIO/eosjs/issues"
+    "url": "https://github.com/boscore/bosjs/issues"
   },
-  "homepage": "https://github.com/EOSIO/eosjs#readme",
+  "homepage": "https://github.com/boscore/bosjs#readme",
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-core": "6.26.3",
