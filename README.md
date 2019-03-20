@@ -7,11 +7,15 @@ General purpose library for BOSCore and other EOSIO blockchains.
 
 ### Versions
 
-| [bsocore/bosjs](/boscore/bosjs) | [Npm](https://www.npmjs.com/package/bosjs) | [EOSIO/eos](https://github.com/EOSIO/eos) | [Docker Hub](https://hub.docker.com/r/eosio/eos/) |
-| --- | --- | --- | --- |
-| tags: 1.0.* | `npm install bosjs` | tags: v1.1.n - v1.2.4 | eosio/eos:v1.2.4 |
+| [bsocore/bosjs](/boscore/bosjs) | [Npm](https://www.npmjs.com/package/bosjs) | 
+| --- | --- |
+| tags: 1.0.* | `npm install bosjs` |
 
-Prior [version](./docs/prior_versions.md) matrix.
+
+### Attention
+In most cases, bosjs is same with eosjs, but for new features, please use the bosjs.  
+As BOS use the latest system contract, there is a bug fix about mulitsig, if you DApp use it, please use the bosjs.
+
 
 ### Usage
 
