@@ -353,8 +353,8 @@ bos.transfer('inita', 'initb', '1.4000 SYS', '', false)
 ```
 
 Read-write API methods and documentation are generated from the eosio
-[token](https://github.com/EOSIO/eosjs/blob/master/src/schema/eosio_token.json) and
-[system](https://github.com/EOSIO/eosjs/blob/master/src/schema/eosio_system.json).
+[token](https://github.com/boscore/bosjs/tree/master/src/schema/eosio_token.json) and
+[system](https://github.com/boscore/bosjs/tree/master/src/schema/eosio_system.json).
 
 Assets amounts require zero padding.  For a better user-experience, if you know
 the correct precision you may use DecimalPad to add the padding.
@@ -367,7 +367,7 @@ assert.equal('10.2000', DecimalPad(userInput, precision))
 ```
 
 For more advanced signing, see `keyProvider` and `signProvider` in
-[index.test.js](https://github.com/EOSIO/eosjs/blob/master/src/index.test.js).
+[index.test.js](https://github.com/boscore/bosjs/tree/master/src/index.test.js).
 
 ### Shorthand
 
@@ -638,7 +638,7 @@ var {format, api, ecc, json, Fcbuffer} = Bos.modules
   * Encrypt or decrypt with EOS compatible checksums
   * Calculate a shared secret
 
-* json {[api](https://github.com/EOSIO/eosjs-api/blob/master/src/api), [schema](https://github.com/EOSIO/eosjs/blob/master/src/schema)},
+* json {[api](https://github.com/EOSIO/eosjs-api/blob/master/src/api), [schema](https://github.com/boscore/bosjs/tree/master/src/schema)},
   * Blockchain definitions (api method names, blockchain schema)
 
 * eosjs-keygen [[Github](https://github.com/eosio/eosjs-keygen), [NPM](https://www.npmjs.org/package/eosjs-keygen)]
