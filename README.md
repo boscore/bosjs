@@ -16,7 +16,7 @@ Prior [version](./docs/prior_versions.md) matrix.
 ### Usage
 
 * Install with: `npm install bosjs`
-* Html script tag, see [releases](https://github.com/EOSIO/eosjs/releases) for the correct **version** and its matching script **integrity** hash.
+* Html script tag, see [releases](https://github.com/boscore/bosjs/releases) for the correct **version** and its matching script **integrity** hash.
 
 ```html
 <!--
@@ -27,7 +27,7 @@ sha512-VKOxq8R14PpPh4nbLvD8DtxxTv1UmZp7pb3+P8IOQ36m3PBJpm6cd8pI8WRI6d9/aozwADKb3
 <html>
 <head>
   <meta charset="utf-8">
-  <script src="https://cdn.jsdelivr.net/npm/eosjs@16.0.9/lib/eos.min.js"
+  <script src="https://cdn.jsdelivr.net/npm/bosjs@1.0.1/lib/bos.min.js"
     integrity="sha512-zhPSKFEBlDVvUzjl9aBS66cI8tDYoLetynuKvIekHT8NZZ12oxwcZ//M/eT/2Rb/pR/cjFvLD8104Cy//sdEnA=="
     crossorigin="anonymous"></script>
 
@@ -67,7 +67,7 @@ sha512-VKOxq8R14PpPh4nbLvD8DtxxTv1UmZp7pb3+P8IOQ36m3PBJpm6cd8pI8WRI6d9/aozwADKb3
 Ways to instantiate eosjs.
 
 ```js
-Eos = require('eosjs')
+Eos = require('bosjs')
 
 // Private key or keys (array) provided statically or by way of a function.
 // For multiple keys, the get_required_keys API is used (more on that below).
@@ -141,7 +141,7 @@ Chain and history API functions are available after creating the `eos` object.
 ### Configuration
 
 ```js
-Eos = require('eosjs')
+Eos = require('bosjs')
 
 // Default configuration
 config = {
