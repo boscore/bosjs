@@ -1,6 +1,6 @@
 {
   "name": "bosjs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "General purpose library for the BOS blockchain.",
   "main": "lib/index.js",
   "files": [

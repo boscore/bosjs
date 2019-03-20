@@ -2,12 +2,12 @@
 
 General purpose library for BOSCore and other EOSIO blockchains.
 
-## BOSJS Version : v1.0.1
+## BOSJS Version : v1.0.3
 ### Basic EOSJS Version: v16.0.9
 
 ### Versions
 
-| [bsocore/bosjs](/boscore/bosjs) | [Npm](https://www.npmjs.com/package/bosjs) | 
+| [boscore/bosjs](/boscore/bosjs) | [Npm](https://www.npmjs.com/package/bosjs) | 
 | --- | --- |
 | tags: 1.0.* | `npm install bosjs` |
 
@@ -24,15 +24,15 @@ As BOS use the latest system contract, there is a bug fix about mulitsig, if you
 
 ```html
 <!--
-sha512-fqmNgLjSEhMSiGW9Tkv735UpvnPPKlaVOHgYwrOEhzRbzcsB5z7g2zHYtAOKgIOYNkGg3Q3CBfJapbVU9lzbpA== lib/eos.js
-sha512-zhPSKFEBlDVvUzjl9aBS66cI8tDYoLetynuKvIekHT8NZZ12oxwcZ//M/eT/2Rb/pR/cjFvLD8104Cy//sdEnA== lib/eos.min.js
-sha512-VKOxq8R14PpPh4nbLvD8DtxxTv1UmZp7pb3+P8IOQ36m3PBJpm6cd8pI8WRI6d9/aozwADKb3HSFQ7A8s+OhSA== lib/eos.min.js.map
+sha512-jrPSQZRRplDwyHhPNTQUmS1EuEgix60MOxUYoX4gYeI8OM1wxWzJCalwlWt0MJanfwdkQSpYBBT8nkiMcSH7PA== lib/bos.js
+sha512-Otl2630kQoOGxGrs2yjvEdaNTcQdx6Rx2fEye4rLAf67TL7nMElPRH6MfrDFLTwvBOpq6DbMKl8gfrlG3VywGw== lib/bos.min.js
+sha512-jpg63bLLYjbRmxqhk2vPVsnotZ+o4YnpNF0gFkYYWuTZf46mwoWx6iXT6rNgaBHu5xJeYwXEXoyMfj89bSkRRQ== lib/bos.min.js.map
 -->
 <html>
 <head>
   <meta charset="utf-8">
-  <script src="https://cdn.jsdelivr.net/npm/bosjs@1.0.1/lib/bos.min.js"
-    integrity="sha512-zhPSKFEBlDVvUzjl9aBS66cI8tDYoLetynuKvIekHT8NZZ12oxwcZ//M/eT/2Rb/pR/cjFvLD8104Cy//sdEnA=="
+  <script src="https://cdn.jsdelivr.net/npm/bosjs@1.0.3/lib/bos.min.js"
+    integrity="sha512-Otl2630kQoOGxGrs2yjvEdaNTcQdx6Rx2fEye4rLAf67TL7nMElPRH6MfrDFLTwvBOpq6DbMKl8gfrlG3VywGw=="
     crossorigin="anonymous"></script>
 
   <script>
@@ -44,9 +44,9 @@ sha512-VKOxq8R14PpPh4nbLvD8DtxxTv1UmZp7pb3+P8IOQ36m3PBJpm6cd8pI8WRI6d9/aozwADKb3
   }
 
   /**
-    Other httpEndpoint's: https://www.eosdocs.io/resources/apiendpoints
+    Other httpEndpoint's: 
   */
-  eos = Eos({
+  bos = Bos({
     keyProvider: '5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3',// private key
     httpEndpoint: 'http://127.0.0.1:8888',
     chainId: chain.sys,
@@ -58,7 +58,7 @@ sha512-VKOxq8R14PpPh4nbLvD8DtxxTv1UmZp7pb3+P8IOQ36m3PBJpm6cd8pI8WRI6d9/aozwADKb3
     @example updateProducerVote('myaccount', 'proxyaccount', ['respectedbp'])
   */
   async function updateProducerVote(voter, proxy = '', producers = []) {
-    return eos.voteproducer(voter, proxy, producers)
+    return bos.voteproducer(voter, proxy, producers)
   }
 
   </script>
@@ -68,39 +68,39 @@ sha512-VKOxq8R14PpPh4nbLvD8DtxxTv1UmZp7pb3+P8IOQ36m3PBJpm6cd8pI8WRI6d9/aozwADKb3
 
 ### Usage
 
-Ways to instantiate eosjs.
+Ways to instantiate bosjs.
 
 ```js
-Eos = require('bosjs')
+Bos = require('bosjs')
 
 // Private key or keys (array) provided statically or by way of a function.
 // For multiple keys, the get_required_keys API is used (more on that below).
 keyProvider: '5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'
 
 // Localhost Testnet (run ./docker/up.sh)
-eos = Eos({keyProvider})
+bos = Bos({keyProvider})
 
 // Connect to a testnet or mainnet
-eos = Eos({httpEndpoint, chainId, keyProvider})
+bos = Bos({httpEndpoint, chainId, keyProvider})
 
 // Cold-storage
-eos = Eos({httpEndpoint: null, chainId, keyProvider})
+bos = Bos({httpEndpoint: null, chainId, keyProvider})
 
 // Add support for non-EOS public key prefixes, such as PUB, etc
-eos = Eos({keyPrefix: 'PUB'})
+bos = Bos({keyPrefix: 'PUB'})
 
-// Read-only instance when 'eosjs' is already a dependency
-eos = Eos.modules.api({/*config*/})
+// Read-only instance when 'bosjs' is already a dependency
+bos = Bos.modules.api({/*config*/})
 
 // Read-only instance when an application never needs to write (smaller library)
 EosApi = require('eosjs-api')
-eos = EosApi({/*config*/})
+bos = EosApi({/*config*/})
 ```
 
 No-arguments prints usage.
 
 ```js
-eos.getBlock()
+bos.getBlock()
 ```
 ```json
 USAGE
@@ -123,29 +123,29 @@ All blockchain functions (read and write) follow this pattern:
 
 ```js
 // If the last argument is a function it is treated as a callback
-eos.getBlock(1, (error, result) => {})
+bos.getBlock(1, (error, result) => {})
 
 // If a callback is not provided, a Promise is returned
-eos.getBlock(1) // @returns {Promise}
+bos.getBlock(1) // @returns {Promise}
 
 // Parameters can be positional or an object
-eos.getBlock({block_num_or_id: 1})
+bos.getBlock({block_num_or_id: 1})
 
 // An API with no parameters is invoked with an empty object or callback (avoids logging usage)
-eos.getInfo({}) // @returns {Promise}
-eos.getInfo((error, result) => { console.log(error, result) })
+bos.getInfo({}) // @returns {Promise}
+bos.getInfo((error, result) => { console.log(error, result) })
 ```
 
 ### API Documentation
 
-Chain and history API functions are available after creating the `eos` object.
+Chain and history API functions are available after creating the `bos` object.
 
-* [API](https://github.com/EOSIO/eosjs-api/blob/master/docs/api.md#eos--object)
+* [API](https://github.com/EOSIO/eosjs-api/blob/master/docs/api.md#bos--object)
 
 ### Configuration
 
 ```js
-Eos = require('bosjs')
+Bos = require('bosjs')
 
 // Default configuration
 config = {
@@ -158,7 +158,7 @@ config = {
   sign: true
 }
 
-eos = Eos(config)
+bos = Bos(config)
 ```
 
 * **chainId** `hex` - Unique ID for the blockchain you're connecting to.  This
@@ -180,7 +180,7 @@ eos = Eos(config)
 * **keyPrefix** `[string='EOS']` - Change the public key prefix.
 
 * **httpEndpoint** `string` - http or https location of a nodeosd server
-  providing a chain API.  When using eosjs from a browser remember to configure
+  providing a chain API.  When using bosjs from a browser remember to configure
   the same origin policy in nodeosd or proxy server.  For testing, nodeosd
   configuration `access-control-allow-origin = *` could be used.
 
@@ -208,7 +208,7 @@ eos = Eos(config)
   * `null|undefined` - broadcast as usual
 
 * **transactionHeaders** (advanced) - manually calculate transaction header.  This
-  may be provided so eosjs does not need to make header related API calls to
+  may be provided so bosjs does not need to make header related API calls to
   nodeos.  Used in environments like cold-storage.  This callback is called for
   every transaction. Headers are documented here [eosjs-api#headers](https://github.com/EOSIO/eosjs-api/blob/HEAD/docs/index.md#headers--object).
   * `transactionHeaders: (expireInSeconds, callback) => {callback(null/*error*/, headers)}`
@@ -223,7 +223,7 @@ eos = Eos(config)
 
   For example, redirect error logs: `config.logger = {error: (...args) => ..}`
 
-* **authorization** - replace the default eosjs authorization on actions.  An
+* **authorization** - replace the default bosjs authorization on actions.  An
   authorization provided here may still be over-written by specifying an
   authorization for each individual action.
 
@@ -237,7 +237,7 @@ eos = Eos(config)
 
 Options may be provided after parameters.
 
-NOTE: `authorization` is for individual actions, it does not belong in `Eos(config)`.
+NOTE: `authorization` is for individual actions, it does not belong in `Bos(config)`.
 
 ```js
 options = {
@@ -248,7 +248,7 @@ options = {
 ```
 
 ```js
-eos.transfer('alice', 'bob', '1.0000 SYS', '', options)
+bos.transfer('alice', 'bob', '1.0000 SYS', '', options)
 ```
 
 * **authorization** `[array<auth>|auth]` - identifies the
@@ -274,11 +274,11 @@ eos.transfer('alice', 'bob', '1.0000 SYS', '', options)
   transaction.
 
   ```js
-  await eos.anyAction('args', {keyProvider})
+  await bos.anyAction('args', {keyProvider})
   ```
 
   ```js
-  await eos.transaction(tr => { tr.anyAction() }, {keyProvider})
+  await bos.transaction(tr => { tr.anyAction() }, {keyProvider})
   ```
 
 ### Transaction
@@ -301,7 +301,7 @@ Create and send (broadcast) a transaction:
 
 ```javascript
 /** @return {Promise} */
-eos.transaction(
+bos.transaction(
   {
     // ...headers,
     // context_free_actions: [],
@@ -333,23 +333,23 @@ more frequently.  This avoids having lots of JSON in the code.
 
 ```javascript
 // Run with no arguments to print usage.
-eos.transfer()
+bos.transfer()
 
 // Callback is last, when omitted a promise is returned
-eos.transfer('inita', 'initb', '1.0000 SYS', '', (error, result) => {})
-eos.transfer('inita', 'initb', '1.1000 SYS', '') // @returns {Promise}
+bos.transfer('inita', 'initb', '1.0000 SYS', '', (error, result) => {})
+bos.transfer('inita', 'initb', '1.1000 SYS', '') // @returns {Promise}
 
 // positional parameters
-eos.transfer('inita', 'initb', '1.2000 SYS', '')
+bos.transfer('inita', 'initb', '1.2000 SYS', '')
 
 // named parameters
-eos.transfer({from: 'inita', to: 'initb', quantity: '1.3000 SYS', memo: ''})
+bos.transfer({from: 'inita', to: 'initb', quantity: '1.3000 SYS', memo: ''})
 
 // options appear after parameters
 options = {broadcast: true, sign: true}
 
 // `false` is a shortcut for {broadcast: false}
-eos.transfer('inita', 'initb', '1.4000 SYS', '', false)
+bos.transfer('inita', 'initb', '1.4000 SYS', '', false)
 ```
 
 Read-write API methods and documentation are generated from the eosio
@@ -360,7 +360,7 @@ Assets amounts require zero padding.  For a better user-experience, if you know
 the correct precision you may use DecimalPad to add the padding.
 
 ```js
-DecimalPad = Eos.modules.format.DecimalPad
+DecimalPad = Bos.modules.format.DecimalPad
 userInput = '10.2'
 precision = 4
 assert.equal('10.2000', DecimalPad(userInput, precision))
@@ -373,7 +373,7 @@ For more advanced signing, see `keyProvider` and `signProvider` in
 
 Shorthand is available for some types such as Asset and Authority.  This syntax
 is only for concise functions and does not work when providing entire transaction
-objects to `eos.transaction`..
+objects to `bos.transaction`..
 
 For example:
 * permission `inita` defaults `inita@active`
@@ -388,7 +388,7 @@ New accounts will likely require some staked tokens for RAM and bandwidth.
 wif = '5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'
 pubkey = 'EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV'
 
-eos.transaction(tr => {
+bos.transaction(tr => {
   tr.newaccount({
     creator: 'eosio',
     name: 'myaccount',
@@ -422,7 +422,7 @@ If you're loading a **wasm** file, you do not need binaryen. If you're loading
 a **wast** file you can include and configure the binaryen compiler, this is
 used to compile to **wasm** automatically when calling **setcode**.
 
-Versions of binaryen may be [problematic](https://github.com/EOSIO/eos/issues/2187).
+Versions of binaryen may be [problematic](https://github.com/EOSIO/bos/issues/2187).
 
 ```bash
 $ npm install binaryen@37.0.0
@@ -430,7 +430,7 @@ $ npm install binaryen@37.0.0
 
 ```js
 binaryen = require('binaryen')
-eos = Eos({keyProvider, binaryen})
+bos = Bos({keyProvider, binaryen})
 ```
 
 #### Deploy
@@ -440,24 +440,24 @@ wasm = fs.readFileSync(`docker/contracts/eosio.token/eosio.token.wasm`)
 abi = fs.readFileSync(`docker/contracts/eosio.token/eosio.token.abi`)
 
 // Publish contract to the blockchain
-eos.setcode('myaccount', 0, 0, wasm) // @returns {Promise}
-eos.setabi('myaccount', JSON.parse(abi)) // @returns {Promise}
+bos.setcode('myaccount', 0, 0, wasm) // @returns {Promise}
+bos.setabi('myaccount', JSON.parse(abi)) // @returns {Promise}
 ```
 
 #### Fetch a smart contract
 
 ```js
 // @returns {Promise}
-eos.contract('myaccount', [options], [callback])
+bos.contract('myaccount', [options], [callback])
 
 // Run immediately, `myaction` returns a Promise
-eos.contract('myaccount').then(myaccount => myaccount.myaction(..))
+bos.contract('myaccount').then(myaccount => myaccount.myaction(..))
 
 // Group actions. `transaction` returns a Promise but `myaction` does not
-eos.transaction('myaccount', myaccount => { myaccount.myaction(..) })
+bos.transaction('myaccount', myaccount => { myaccount.myaction(..) })
 
 // Transaction with multiple contracts
-eos.transaction(['myaccount', 'myaccount2'], ({myaccount, myaccount2}) => {
+bos.transaction(['myaccount', 'myaccount2'], ({myaccount, myaccount2}) => {
    myaccount.myaction(..)
    myaccount2.myaction(..)
 })
@@ -466,13 +466,13 @@ eos.transaction(['myaccount', 'myaccount2'], ({myaccount, myaccount2}) => {
 #### Offline or cold-storage contract
 
 ```js
-eos = Eos({httpEndpoint: null})
+bos = Bos({httpEndpoint: null})
 
 abi = fs.readFileSync(`docker/contracts/eosio.token/eosio.token.abi`)
-eos.fc.abiCache.abi('myaccount', JSON.parse(abi))
+bos.fc.abiCache.abi('myaccount', JSON.parse(abi))
 
 // Check that the ABI is available (print usage)
-eos.contract('myaccount').then(myaccount => myaccount.create())
+bos.contract('myaccount').then(myaccount => myaccount.create())
 ```
 #### Offline or cold-storage transaction
 
@@ -482,14 +482,14 @@ eos.contract('myaccount').then(myaccount => myaccount.create())
 // Prepare headers
 expireInSeconds = 60 * 60 // 1 hour
 
-eos = Eos(/* {httpEndpoint: 'https://..'} */)
+bos = Bos(/* {httpEndpoint: 'https://..'} */)
 
-info = await eos.getInfo({})
+info = await bos.getInfo({})
 chainDate = new Date(info.head_block_time + 'Z')
 expiration = new Date(chainDate.getTime() + expireInSeconds * 1000)
 expiration = expiration.toISOString().split('.')[0]
 
-block = await eos.getBlock(info.last_irreversible_block_num)
+block = await bos.getBlock(info.last_irreversible_block_num)
 
 transactionHeaders = {
   expiration,
@@ -500,16 +500,16 @@ transactionHeaders = {
 // OFFLINE (bring `transactionHeaders`)
 
 // All keys in keyProvider will sign.
-eos = Eos({httpEndpoint: null, chainId, keyProvider, transactionHeaders})
+bos = Bos({httpEndpoint: null, chainId, keyProvider, transactionHeaders})
 
-transfer = await eos.transfer('inita', 'initb', '1.0000 SYS', '')
+transfer = await bos.transfer('inita', 'initb', '1.0000 SYS', '')
 transferTransaction = transfer.transaction
 
 // ONLINE (bring `transferTransaction`)
 
-eos = Eos(/* {httpEndpoint: 'https://..'} */)
+bos = Bos(/* {httpEndpoint: 'https://..'} */)
 
-processedTransaction = await eos.pushTransaction(transferTransaction)
+processedTransaction = await bos.pushTransaction(transferTransaction)
 
 // cleos version:
 const cleosTransaction = transferTransaction.transaction
@@ -522,7 +522,7 @@ cleosTransaction.signatures = transferTransaction.signatures
 ```js
 // more on the contract / transaction syntax
 
-await eos.transaction('myaccount', myaccount => {
+await bos.transaction('myaccount', myaccount => {
 
   // Create the initial token with its max supply
   // const options = {authorization: 'myaccount'} // default
@@ -532,7 +532,7 @@ await eos.transaction('myaccount', myaccount => {
   myaccount.issue('myaccount', '10000.000 PHI', 'issue')
 })
 
-const balance = await eos.getCurrencyBalance('myaccount', 'myaccount', 'PHI')
+const balance = await bos.getCurrencyBalance('myaccount', 'myaccount', 'PHI')
 console.log('Currency Balance', balance)
 ```
 
@@ -542,10 +542,10 @@ Other ways to use contracts and transactions.
 
 ```javascript
 // if either transfer fails, both will fail (1 transaction, 2 messages)
-await eos.transaction(eos =>
+await bos.transaction(bos =>
   {
-    eos.transfer('inita', 'initb', '1.0000 SYS', ''/*memo*/)
-    eos.transfer('inita', 'initc', '1.0000 SYS', ''/*memo*/)
+    bos.transfer('inita', 'initb', '1.0000 SYS', ''/*memo*/)
+    bos.transfer('inita', 'initc', '1.0000 SYS', ''/*memo*/)
     // Returning a promise is optional (but handled as expected)
   }
   // [options],
@@ -553,19 +553,19 @@ await eos.transaction(eos =>
 )
 
 // transaction on a single contract
-await eos.transaction('myaccount', myaccount => {
+await bos.transaction('myaccount', myaccount => {
   myaccount.transfer('myaccount', 'inita', '10.000 PHI', '')
 })
 
 // mix contracts in the same transaction
-await eos.transaction(['myaccount', 'eosio.token'], ({myaccount, eosio_token}) => {
+await bos.transaction(['myaccount', 'eosio.token'], ({myaccount, eosio_token}) => {
   myaccount.transfer('inita', 'initb', '1.000 PHI', '')
   eosio_token.transfer('inita', 'initb', '1.0000 SYS', '')
 })
 
 // The contract method does not take an array so must be called once for
 // each contract that is needed.
-const myaccount = await eos.contract('myaccount')
+const myaccount = await bos.contract('myaccount')
 await myaccount.transfer('myaccount', 'inita', '1.000 PHI', '')
 
 // a transaction to a contract instance can specify multiple actions
@@ -577,7 +577,7 @@ await myaccount.transaction(myaccountTr => {
 
 # Development
 
-From time-to-time the eosjs and nodeos binary format will change between releases
+From time-to-time the bosjs and nodeos binary format will change between releases
 so you may need to start `nodeos` with the `--skip-transaction-signatures` parameter
 to get your transactions to pass.
 
@@ -586,26 +586,26 @@ es2015 code built in a separate step. If you're changing and testing code,
 import from `./src` instead.
 
 ```javascript
-Eos = require('./src')
+Bos = require('./src')
 
 // forceActionDataHex = false helps transaction readability but may trigger back-end bugs
 config = {verbose: true, debug: false, broadcast: true, forceActionDataHex: true, keyProvider}
 
-eos = Eos(config)
+bos = Bos(config)
 ```
 
 #### Fcbuffer
 
-The `eos` instance can provide serialization:
+The `bos` instance can provide serialization:
 
 ```javascript
 // 'asset' is a type but could be any struct or type like: transaction or uint8
 type = {type: 1, data: '00ff'}
-buffer = eos.fc.toBuffer('extensions_type', type)
-assert.deepEqual(type, eos.fc.fromBuffer('extensions_type', buffer))
+buffer = bos.fc.toBuffer('extensions_type', type)
+assert.deepEqual(type, bos.fc.fromBuffer('extensions_type', buffer))
 
 // ABI Serialization
-eos.contract('eosio.token', (error, eosio_token) => {
+bos.contract('eosio.token', (error, eosio_token) => {
   create = {issuer: 'inita', maximum_supply: '1.0000 SYS'}
   buffer = eosio_token.fc.toBuffer('create', create)
   assert.deepEqual(create, eosio_token.fc.fromBuffer('create', buffer))
@@ -616,12 +616,12 @@ Use Node v10+ for `package-lock.json`.
 
 # Related Libraries
 
-These libraries are integrated into `eosjs` seamlessly so you probably do not
+These libraries are integrated into `bosjs` seamlessly so you probably do not
 need to use them directly.  They are exported here giving more API access or
 in some cases may be used standalone.
 
 ```javascript
-var {format, api, ecc, json, Fcbuffer} = Eos.modules
+var {format, api, ecc, json, Fcbuffer} = Bos.modules
 ```
 * format [./format.md](./docs/format.md)
   * Blockchain name validation
