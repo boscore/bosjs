@@ -490,8 +490,17 @@ function WriteApi(Network, network, config, Transaction) {
     const txObject = Transaction.fromObject(rawTx)
     // console.log('txObject', txObject)
 
-    const buf = Fcbuffer.toBuffer(Transaction, txObject)
-    const tr = Transaction.toObject(txObject)
+    // fix: UnhandledPromiseRejectionWarning: TypeError [ERR_INVALID_ARG_TYPE]
+    // if unhandle promise reject, outside can not catch this error.
+    let buf;
+    let tr;
+    try {
+      buf = Fcbuffer.toBuffer(Transaction, txObject);
+      tr = Transaction.toObject(txObject);
+    } catch (e) {
+      callback(error);
+      return;
+    }
 
     const transactionId  = createHash('sha256').update(buf).digest().toString('hex')
 
